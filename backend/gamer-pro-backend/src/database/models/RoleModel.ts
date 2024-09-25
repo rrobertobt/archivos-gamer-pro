@@ -1,8 +1,8 @@
-import { Model } from "objection";
-import { EmployeeModel } from "./EmployeeModel";
+import { Model } from 'objection';
+import { EmployeeModel } from './EmployeeModel';
 
 export class RoleModel extends Model {
-  static tableName = "employees.roles";
+  static tableName = 'employees.roles';
 
   id: number;
   name: string;
@@ -14,8 +14,8 @@ export class RoleModel extends Model {
         relation: Model.HasManyRelation,
         modelClass: EmployeeModel,
         join: {
-          from: "employees.roles.id",
-          to: "employees.employees.role_id",
+          from: 'employees.roles.id',
+          to: 'employees.employees.role_id',
         },
       },
     };
