@@ -1,9 +1,10 @@
 <template>
-  <v-app theme="dark">
-    <NuxtPage />
-  </v-app>
+    cashier main
 </template>
 <script setup>
+definePageMeta({
+  layout: 'cashier',
+})
 </script>
 <style lang="postcss" scoped>
 </style>

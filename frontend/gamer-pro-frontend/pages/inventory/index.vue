@@ -1,7 +1,7 @@
 <template>
-  <v-app theme="dark">
-    <NuxtPage />
-  </v-app>
+  <div>
+    inventory main
+  </div>
 </template>
 <script setup>
 </script>

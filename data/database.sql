@@ -56,7 +56,8 @@ CREATE TABLE employees.employees (
     username character varying(100) NOT NULL UNIQUE,
     encrypted_password character varying(100) NOT NULL,
     role_id integer NOT NULL REFERENCES employees.Roles(id),
-    branch_id integer NOT NULL REFERENCES inventory.Branches(id)
+    branch_id integer NOT NULL REFERENCES inventory.Branches(id),
+    assigned_checkout integer NOT NULL DEFAULT -1
 );
 
 CREATE TYPE customers.creditPointsType AS ENUM ('common', 'gold', 'platinum', 'diamond');

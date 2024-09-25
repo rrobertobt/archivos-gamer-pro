@@ -2,11 +2,14 @@
   <div class="main-app">
     <NuxtLayout />
   </div>
+  <AppSnackbar />
 </template>
-<script setup></script>
+<script setup>
+import AppSnackbar from './components/AppSnackbar.vue';
+</script>
 <style lang="scss">
 .main-app {
-  padding: 2rem;
+  padding-block: 2rem;
   min-height: 100vh;
 }
 
@@ -31,6 +34,7 @@
 
 :root {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: rgb(18, 18, 18)
 }
 
 @import '@/assets/styles/main.scss';

@@ -1318,18 +1318,22 @@ branchRoleCount.forEach(({ branch_id, role_id, count }) => {
     if (userIndex < initialUsers.length) {
       initialUsers[userIndex].role_id = role_id;
       initialUsers[userIndex].branch_id = branch_id;
+
+      // also generate a random number between 1 and 10 for the assigned checkout register only if the user is a cashier
+      if (role_id === 2) initialUsers[userIndex].assigned_checkout = faker.number.int({ min: 1, max: 10 });
+      else initialUsers[userIndex].assigned_checkout = -1
       userIndex++;
     }
   }
 });
 
 // Generate the SQL insert statement
-const usersInserts = `INSERT INTO employees.employees (name, username, encrypted_password, role_id, branch_id) VALUES
+const usersInserts = `INSERT INTO employees.employees (name, username, encrypted_password, role_id, branch_id, assigned_checkout) VALUES
 ${initialUsers.map((user) => {
-  return `('${user.name}', '${user.username}', '${user.encrypted_password}', ${user.role_id}, ${user.branch_id})`;
+  return `('${user.name}', '${user.username}', '${user.encrypted_password}', ${user.role_id}, ${user.branch_id}, ${user.assigned_checkout})`;
 }).join(',\n ')};`;
 
-// console.log(usersInserts);
+console.log(usersInserts);
 
 // console.log("[INSERT] USERS: " + usersInserts)
 // fs.writeFileSync('users.sql', usersInserts);

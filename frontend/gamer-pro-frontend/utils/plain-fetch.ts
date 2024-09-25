@@ -3,7 +3,8 @@ export const $api = $fetch.create({
   onRequest({options}) {
     if (localStorage.getItem('userData')) {
       const userData = JSON.parse(localStorage.getItem('userData') ?? '{}') 
-      options.headers['Authorization'] = userData.id
+      console.log(userData.id)
+      options.headers.set('Authorization', `${userData.id}`)
     }
   }
 })
