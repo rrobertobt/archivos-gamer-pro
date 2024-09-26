@@ -26,11 +26,6 @@ export class ProductsService extends BaseService {
       .where((builder) => this.queryFilters(queryDto, builder))
       .orderBy('product.id', 'asc');
     return prod;
-    return await this.productModel
-      .query()
-      .select('*')
-      .where((builder) => this.queryFilters(queryDto, builder))
-      .orderBy('id', 'desc');
   }
 
   async findOne(id: number) {
