@@ -22,6 +22,9 @@
       <strong>Cliente:</strong> {{ data?.customer?.name ?? 'Consumidor final (C/F)' }}
     </h4>
     <h4>
+      <strong>Sucursal:</strong> {{ data?.branch.name }}
+    </h4>
+    <h4>
       <strong>Cajero/a:</strong> {{ data?.employee.name }} en Caja <code>#{{ data?.employee.assigned_checkout }}</code>
     </h4>
     
