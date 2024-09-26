@@ -22,6 +22,9 @@ export class RoleGuard implements CanActivate {
   ) {}
   async canActivate(context: ExecutionContext) {
     const role = this.reflector.get(Role, context.getHandler());
+    if (!role) {
+      return true;
+    }
     const request = context.switchToHttp().getRequest();
     // get the user id from the authorization header
     const userId = request.headers.authorization;

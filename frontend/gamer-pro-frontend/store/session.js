@@ -19,7 +19,6 @@ export const useSessionStore = defineStore('session', () => {
         typeOf: SnackbarType.SUCCESS
       })
       const role = response.role.name
-      console.log(role)
       switch (role) {
         case 'admin':
           navigateTo('/admin')
@@ -41,7 +40,7 @@ export const useSessionStore = defineStore('session', () => {
     } catch (error) {
       useSnackbarStore().showSnackbar({
         titleToShow: 'Sesión',
-        messageToShow: 'Credenciales de usuario incorrectas, por favor intente de nuevo',
+        messageToShow: error.data.message ?? error.name,
         typeOf: SnackbarType.ERROR
       })
       return {
@@ -56,6 +55,37 @@ export const useSessionStore = defineStore('session', () => {
     const userData = localStorage.getItem('userData')
     if (userData) {
       session.value = JSON.parse(userData)
+    }
+  }
+
+  const checkAdminCredentials = async (username, password) => {
+    try {
+      loading.value = true
+      const response = await $api('/auth/check-admin', {
+        method: 'POST',
+        body: { username, password }
+      })
+      useSnackbarStore().showSnackbar({
+        titleToShow: 'Credenciales',
+        messageToShow: 'Administrador verificado correctamente',
+        typeOf: SnackbarType.SUCCESS
+      })
+      return {
+        error: false,
+        response
+      }
+    } catch (error) {
+      useSnackbarStore().showSnackbar({
+        titleToShow: 'Credenciales',
+        messageToShow: error.data.message ?? error.name,
+        typeOf: SnackbarType.ERROR
+      })
+
+      return {
+        error: true
+      }
+    } finally {
+      loading.value = false
     }
   }
 
@@ -80,6 +110,7 @@ export const useSessionStore = defineStore('session', () => {
     login,
     logout,
     recoverSession,
+    checkAdminCredentials,
     role
   }
 })

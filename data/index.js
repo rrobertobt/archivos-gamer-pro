@@ -1326,6 +1326,15 @@ branchRoleCount.forEach(({ branch_id, role_id, count }) => {
     }
   }
 });
+// add also an admin user
+initialUsers.push({
+  name: 'Super Administrador',
+  username: 'superadmin1',
+  encrypted_password: bcrypt.hashSync('superadmin1_password', 10),
+  role_id: 1,
+  branch_id: 1,
+  assigned_checkout: -1
+});
 
 // Generate the SQL insert statement
 const usersInserts = `INSERT INTO employees.employees (name, username, encrypted_password, role_id, branch_id, assigned_checkout) VALUES
@@ -1335,6 +1344,28 @@ ${initialUsers.map((user) => {
 
 console.log(usersInserts);
 
-// console.log("[INSERT] USERS: " + usersInserts)
-// fs.writeFileSync('users.sql', usersInserts);
 
+
+const customers = Array.from({ length: 8 }, (_, index) => { 
+  const name = fakerES.person.fullName();
+  // 8 digit phone number
+  const phone = faker.helpers.fromRegExp(/[2-7]{8}/);
+  const nit = faker.number.int({
+    min: 100000000,
+    max: 999999999
+  })
+
+  return {
+    name,
+    phone,
+    nit
+  }
+})
+console.log(customers);
+const customersInserts = `INSERT INTO customers.customers (name, phone, nit) VALUES
+${customers.map((customer) => {
+  return `('${customer.name}', '${customer.phone}', ${customer.nit})`;
+}).join(',\n ')};`;
+
+console.log(customersInserts);
+fs.writeFileSync('customers.sql', customersInserts);

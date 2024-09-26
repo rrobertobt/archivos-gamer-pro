@@ -9,8 +9,12 @@ import AppSnackbar from './components/AppSnackbar.vue';
 </script>
 <style lang="scss">
 .main-app {
-  padding-block: 2rem;
+  // padding-top: 2rem;
   min-height: 100vh;
+}
+
+.v-container-page {
+  padding-top: 2rem !important;
 }
 
 *,
@@ -19,17 +23,17 @@ import AppSnackbar from './components/AppSnackbar.vue';
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
-  font-family: system-ui,
-  -apple-system,
-  BlinkMacSystemFont,
-  'Segoe UI',
-  Roboto,
-  Oxygen,
-  Ubuntu,
-  Cantarell,
-  'Open Sans',
-  'Helvetica Neue',
-  sans-serif
+  // font-family: system-ui,
+  // -apple-system,
+  // BlinkMacSystemFont,
+  // 'Segoe UI',
+  // Roboto,
+  // Oxygen,
+  // Ubuntu,
+  // Cantarell,
+  // 'Open Sans',
+  // 'Helvetica Neue',
+  // sans-serif
 }
 
 :root {

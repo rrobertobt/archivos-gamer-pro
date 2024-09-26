@@ -344,7 +344,6 @@ INSERT INTO inventory.products (name, description, price, category_id) VALUES
   ('Carcasa para consola Nintendo Switch', 'La carcasa para consola Nintendo Switch te permite personalizar tu consola con un toque de color.', 19.99, 3);
 
 
-
 WITH first_branch_games AS (
   SELECT id FROM inventory.products
   WHERE category_id = 1
@@ -396,7 +395,6 @@ SELECT id, 3, floor(random() * 100 + 1)::int, floor(random() * 100 + 1)::int FRO
 
 
 --  Users
-
 INSERT INTO employees.employees (name, username, encrypted_password, role_id, branch_id, assigned_checkout) VALUES
 ('Guadalupe Cavazos Méndez', 'Guadalupe.CavazosMendez10', '$2b$10$DD/JBuzQTqFJ8HwKwSfTQ.DrNqTODdqX2GBpRML2adx8JPcP9tZZG', 2, 1, 4),
  ('Isabela Yáñez Parra', 'Isabela.YanezParra39', '$2b$10$uN9Q3u5hrFdgU3.e7dak.uuQvCfMXYa1gJou1EOFufl.VRE/UW4r.', 2, 1, 10),
@@ -430,4 +428,15 @@ INSERT INTO employees.employees (name, username, encrypted_password, role_id, br
  ('Claudia Abrego Zapata', 'Claudia_AbregoZapata90', '$2b$10$/Feb3GIzk8IeCf3Pc68u0uZpbuMUoikBxdCG/Va76Lo7gmyS8XTbO', 4, 3, -1),
  ('Patricia Delacrúz Marín', 'Patricia_DelacruzMarin94', '$2b$10$PmowtESYavK6vZCgwHsMs.eCb9iFzeD3dMJvB3VICOPz6K1FyVSiC', 4, 3, -1),
  ('Patricia Colunga Miramontes', 'Patricia_ColungaMiramontes17', '$2b$10$dS.6PSMoL87na5KVBOTW/eDZ459yjOf3m3kxlBG9nkZ3lJEp8XHZO', 4, 3, -1),
- ('María del Carmen Quezada Bueno', 'MariadelCarmen.QuezadaBueno', '$2b$10$EhlvZdqqsyerlp0Im.WKiOXnmR1zT9oQbHFo1JzMwumz/NZTCvx0m', 3, 3, -1);
+ ('María del Carmen Quezada Bueno', 'MariadelCarmen.QuezadaBueno', '$2b$10$EhlvZdqqsyerlp0Im.WKiOXnmR1zT9oQbHFo1JzMwumz/NZTCvx0m', 3, 3, -1),
+ ('Super Administrador', 'superadmin1', '$2b$10$sWD7eX4F6F3R2jJAJDKXyu8hUDY3AfQ2v4xq6cxiwM1vtO9GEneCO', 1, 1, -1);
+
+ INSERT INTO customers.customers (name, phone, nit) VALUES
+('Pablo Argüello Henríquez', '43644563', 915041421),
+ ('Lorena Delao Valentín', '63626547', 681450743),
+ ('Jennifer Alva Pineda', '53465276', 293510186),
+ ('Jennifer Delgado Otero', '74242223', 303236655),
+ ('Pablo Hurtado Holguín', '26365334', 244019131),
+ ('Ángel Salcedo Espinosa de los Monteros', '36755365', 724597748),
+ ('Sergi Argüello Solís', '64344236', 777964297),
+ ('Daniel Benavídez Godoy', '53777365', 112347159);

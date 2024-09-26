@@ -41,7 +41,8 @@ CREATE TABLE inventory.stocks (
     warehouse_stock integer NOT NULL DEFAULT 0,
     store_stock integer NOT NULL DEFAULT 0
   
-    aisle character varying(20) NOT NULL DEFAULT '0'
+    warehouse_aisle character varying(20) NOT NULL DEFAULT 'A0',
+    store_aisle character varying(20) NOT NULL DEFAULT 'A0',
 );
 
 CREATE TABLE employees.roles (
@@ -71,7 +72,7 @@ CREATE TABLE customers.credit_points_cards (
 
 CREATE TABLE customers.customers (
     id SERIAL PRIMARY KEY,
-    nit bigint NOT NULL,
+    nit bigint NOT NULL UNIQUE,
     name character varying(100) NOT NULL,
     phone character varying(10) NOT NULL,
     points_card_id integer REFERENCES customers.credit_points_cards(id)
@@ -88,7 +89,7 @@ CREATE TABLE sales.sales (
     -- total_without_discount numeric(10, 2) NOT NULL,
 
     branch_id integer NOT NULL REFERENCES inventory.branches(id),
-    customer_id integer NOT NULL REFERENCES customers.customers(id),
+    customer_id integer REFERENCES customers.customers(id),
     employee_id integer NOT NULL REFERENCES employees.employees(id)
 );
 

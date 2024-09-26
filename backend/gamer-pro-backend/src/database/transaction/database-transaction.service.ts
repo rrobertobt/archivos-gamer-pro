@@ -6,7 +6,7 @@ import {
   Logger,
   UnprocessableEntityException,
 } from '@nestjs/common';
-import { Model, Transaction } from 'objection';
+import { DataError, Model, Transaction } from 'objection';
 import { IGeneralError } from 'src/core/types/general-error.interface';
 
 @Injectable()
@@ -21,6 +21,7 @@ export class DatabaseTransactionService {
       await transaction.commit();
       return res;
     } catch (err) {
+      console.log(err.constructor.name);
       if (logger !== undefined) {
         if (err instanceof HttpException) {
           logger.error(err.message, err.stack, err.getResponse());
@@ -34,11 +35,11 @@ export class DatabaseTransactionService {
           let errors: object[] | string;
           let badRequest = true;
           if (err['columns']) {
-            errors = err['columns'].map((col: string) => {
-              return {
-                [col]: ['A record with the specified value already exists'],
-              };
-            });
+            errors = err['columns']
+              .map((col: string) => {
+                return `Un registro para ${col} ya existe con el valor especificado`;
+              })
+              .join(', ');
           } else {
             badRequest = false;
             errors = 'Duplicate record';
@@ -46,20 +47,35 @@ export class DatabaseTransactionService {
           const error: IGeneralError = {
             statusCode: badRequest ? 400 : 422,
             message: errors,
-            error: badRequest ? 'Bad request' : 'Unprocessable Entity',
+            error: badRequest ? 'Peticion incorrecta' : 'Entidad no procesable',
           };
           if (badRequest) {
             throw new BadRequestException(error);
           } else {
             throw new UnprocessableEntityException(error);
           }
-        } else {
+        } else if (err instanceof DataError) {
+          const [, errorMessage] = err.message.split('-');
+
           const error: IGeneralError = {
-            statusCode: 500,
-            message: 'Internal server error',
-            error: 'Internal server error',
+            statusCode: 400,
+            message: errorMessage,
+            error: 'Error en los datos',
           };
-          throw new InternalServerErrorException(error);
+          throw new BadRequestException(error);
+        } else {
+          // const error: IGeneralError = {
+          //   statusCode: 500,
+          //   message: 'Internal server error',
+          //   error: 'Internal server error',
+          // };
+          // throw new InternalServerErrorException(error);
+          const error: IGeneralError = {
+            statusCode: 400,
+            message: 'Datos no procesables, verifique los datos enviados',
+            error: 'Error en los datos',
+          };
+          throw new BadRequestException(error);
         }
       }
       throw new HttpException(err['response'], err['status']);

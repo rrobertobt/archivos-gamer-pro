@@ -4,13 +4,27 @@ import { Global, Module } from '@nestjs/common';
 import * as dotenv from 'dotenv';
 import { RoleModel } from './models/RoleModel';
 import { EmployeeModel } from './models/EmployeeModel';
+import { BranchModel } from './models/BranchModel';
+import { CategoryModel } from './models/CategoryModel';
+import { CreditPointsCardModel } from './models/CreditPointsCardModel';
+import { CustomerModel } from './models/CustomerModel';
+import { ProductModel } from './models/ProductModel';
+import { SaleDetailModel } from './models/SaleDetailModel';
+import { SaleModel } from './models/SaleModel';
 
 dotenv.config();
 
 // Insert database models here
 const models = [
   RoleModel,
-  EmployeeModel
+  EmployeeModel,
+  BranchModel,
+  CategoryModel,
+  CreditPointsCardModel,
+  CustomerModel,
+  ProductModel,
+  SaleModel,
+  SaleDetailModel,
 ];
 
 const modelProviders = models.map((model) => {
