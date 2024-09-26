@@ -35,11 +35,6 @@ export class SalesController {
     return this.salesService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSaleDto: UpdateSaleDto) {
-    return this.salesService.update(+id, updateSaleDto);
-  }
-
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.salesService.remove(+id);

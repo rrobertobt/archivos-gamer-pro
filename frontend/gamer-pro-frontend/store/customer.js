@@ -34,6 +34,25 @@ export const useCustomerStore = defineStore('customer',()=>{
     }
   }
 
+  const getCustomerByNit = async (nit) => {
+    if (!nit) return
+    try {
+      loading.value = true
+      const response = await $api(`/customers?byNit=${nit}`)
+      return {
+        error: false,
+        response
+      }
+    } catch (error) {
+      return {
+        error: true,
+        response: error.data.message
+      }
+    } finally {
+      loading.value = false
+    }
+  }
+
   const updateCustomer = async (id, payload) => {
     try {
       loading.value = true
@@ -68,7 +87,8 @@ export const useCustomerStore = defineStore('customer',()=>{
   return {
     loading,
     createCustomer,
-    updateCustomer
+    updateCustomer,
+    getCustomerByNit
   }
 })
 

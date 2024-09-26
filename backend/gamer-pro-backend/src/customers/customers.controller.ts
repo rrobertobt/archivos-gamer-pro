@@ -33,9 +33,9 @@ export class CustomersController {
     return this.customersService.findAll(queryDto);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.customersService.findOne(+id);
+  @Get(':nit')
+  findOne(@Param('nit') nit: string) {
+    return this.customersService.findOne(+nit);
   }
 
   @Patch(':id')

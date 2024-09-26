@@ -64,6 +64,7 @@ export class DatabaseTransactionService {
           };
           throw new BadRequestException(error);
         } else {
+          const [, errorMessage] = err.message.split('-');
           // const error: IGeneralError = {
           //   statusCode: 500,
           //   message: 'Internal server error',
@@ -72,9 +73,10 @@ export class DatabaseTransactionService {
           // throw new InternalServerErrorException(error);
           const error: IGeneralError = {
             statusCode: 400,
-            message: 'Datos no procesables, verifique los datos enviados',
-            error: 'Error en los datos',
+            message: errorMessage,
+            error: 'Datos no procesables, verifique los datos enviados',
           };
+          console.log(error);
           throw new BadRequestException(error);
         }
       }

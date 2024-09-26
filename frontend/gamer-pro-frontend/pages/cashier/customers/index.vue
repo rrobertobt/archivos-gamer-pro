@@ -1,7 +1,5 @@
 <template>
   <div>
-    <!-- {{ data }} -->
-    {{ customerData }}
     <h1 class="pb-6 d-flex align-center">
       <v-btn
         variant="text"

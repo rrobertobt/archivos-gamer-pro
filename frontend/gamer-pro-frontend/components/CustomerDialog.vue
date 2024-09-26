@@ -63,6 +63,10 @@
 
   const props = defineProps({
     edit: Boolean,
+    clearOnOpen: {
+      type: Boolean,
+      default: true,
+    },
   });
 
   const { createCustomer,updateCustomer } = useCustomerStore();
@@ -84,7 +88,7 @@
     }),
   });
   watch(dialog, async (value) => {
-    if (value && !props.edit) {
+    if (value && !props.edit && props.clearOnOpen) {
       await nextTick();
       form.value.reset();
     }
@@ -101,7 +105,7 @@
       : await createCustomer(customerData.value);
 
     !result.error ? (dialog.value = false) : null;
-    emit("created");
+    emit("created", result.response.nit);
   };
 </script>
 <style lang="scss" scoped></style>

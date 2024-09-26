@@ -27,9 +27,9 @@ export class CustomersService extends BaseService {
   }
 
   async findAll(queryDto: CustomerQueryDto) {
-    // if (queryDto.nit) {
-    //   return await this.customerModel.query().findOne({ nit: queryDto.nit });
-    // }
+    if (queryDto.byNit) {
+      return await this.customerModel.query().findOne({ nit: queryDto.byNit });
+    }
 
     return await this.customerModel
       .query()
@@ -38,8 +38,8 @@ export class CustomersService extends BaseService {
       .orderBy('id', 'desc');
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} customer`;
+  async findOne(nit: number) {
+    return await this.customerModel.query().findOne({ nit });
   }
 
   async update(id: number, updateCustomerDto: UpdateCustomerDto) {

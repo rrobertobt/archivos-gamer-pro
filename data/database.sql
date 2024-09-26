@@ -25,6 +25,7 @@ CREATE TABLE inventory.branches (
 CREATE TABLE inventory.products (
     id SERIAL PRIMARY KEY,
     name character varying(100) NOT NULL,
+    code character varying(20) NOT NULL UNIQUE,
     description text,
     price numeric(10, 2) NOT NULL,
     -- stock integer NOT NULL,
@@ -39,10 +40,10 @@ CREATE TABLE inventory.stocks (
     product_id integer NOT NULL REFERENCES inventory.Products(id),
     branch_id integer NOT NULL REFERENCES inventory.Branches(id),
     warehouse_stock integer NOT NULL DEFAULT 0,
-    store_stock integer NOT NULL DEFAULT 0
+    store_stock integer NOT NULL DEFAULT 0,
   
     warehouse_aisle character varying(20) NOT NULL DEFAULT 'A0',
-    store_aisle character varying(20) NOT NULL DEFAULT 'A0',
+    store_aisle character varying(20) NOT NULL DEFAULT 'A0'
 );
 
 CREATE TABLE employees.roles (

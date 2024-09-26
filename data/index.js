@@ -3,6 +3,9 @@ import bcrypt from "bcrypt";
 import fs from "fs";
 faker.seed(123);
 fakerES.seed(123);
+import { UniqueEnforcer } from 'enforce-unique'
+
+const uniqueEnforcerNumber = new UniqueEnforcer()
 
 // al inserts should be in 1 insert with multiple values, not multiple inserts
 // Branches (sucursales) SQL insert statements
@@ -1223,6 +1226,7 @@ const nintendoProducts = [
 // product inserts
 // first, insert video games and assign them to the corresponding category
 
+const usedCodes = []
 const videoGames = videogameNames.map((videoGame, index) => ({
   name: videoGame,
   description: faker.lorem.paragraph(),
@@ -1231,17 +1235,51 @@ const videoGames = videogameNames.map((videoGame, index) => ({
     max: 99.99,
     dec: 2
   })),
+  code: uniqueEnforcerNumber.enforce(() => {
+    const number = faker.number.int({ min: 1000, max: 999999 })
+    usedCodes.push(number)
+    return number
+  }).toString(),
   categoryId: 1
 }));
 
+// add codes to the ps, xbox and nintendo products
+playstationProducts.forEach((product) => {
+  product.code = uniqueEnforcerNumber.enforce(() => {
+    const number = faker.number.int({ min: 1000, max: 999999 })
+    usedCodes.push(number)
+    return number
+  }
 
+  ).toString();
+});
+
+xboxProducts.forEach((product) => {
+  product.code = uniqueEnforcerNumber.enforce(() => {
+    const number = faker.number.int({ min: 1000, max: 999999 })
+    usedCodes.push(number)
+    return number
+  }
+
+  ).toString();
+});
+
+nintendoProducts.forEach((product) => {
+  product.code = uniqueEnforcerNumber.enforce(() => {
+    const number = faker.number.int({ min: 1000, max: 999999 })
+    usedCodes.push(number)
+    return number
+  }
+
+  ).toString();
+});
 videoGames.splice(300);
 videoGames.push(...playstationProducts, ...xboxProducts, ...nintendoProducts);
 
-const videoGamesInserts = `INSERT INTO inventory.products (name, description, price, category_id) VALUES ${videoGames
+const videoGamesInserts = `INSERT INTO inventory.products (name, description, price, category_id, code) VALUES ${videoGames
   .map((videoGame) => {
     const fixedName = videoGame.name.replace(/'/g, "''");
-    return `('${fixedName}', '${videoGame.description}', ${videoGame.price}, ${videoGame.categoryId})`
+    return `('${fixedName}', '${videoGame.description}', ${videoGame.price}, ${videoGame.categoryId}, ${videoGame.code})`;
   })
   .join(',\n ')};`;
 
@@ -1346,7 +1384,7 @@ console.log(usersInserts);
 
 
 
-const customers = Array.from({ length: 8 }, (_, index) => { 
+const customers = Array.from({ length: 8 }, (_, index) => {
   const name = fakerES.person.fullName();
   // 8 digit phone number
   const phone = faker.helpers.fromRegExp(/[2-7]{8}/);
