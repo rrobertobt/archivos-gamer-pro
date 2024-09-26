@@ -1,4 +1,5 @@
 -- Script para creación de la base de datos en PostgreSQL
+-- seguido de este script, ejectuar: views.sql, functions.sql, seed.sql
 
 CREATE DATABASE gamer_pro_xela_db;
 
