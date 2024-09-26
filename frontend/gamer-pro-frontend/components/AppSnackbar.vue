@@ -1,5 +1,5 @@
 <template>
-  <v-snackbar v-model="show" vertical location="top center" rounded="lg" theme="dark">
+  <v-snackbar v-model="show" vertical location="top center" rounded="lg" theme="light">
     <div
       class="text-subtitle-1 pb-2 font-weight-bold d-flex align-center"
       :class="[colorSnackbar]"

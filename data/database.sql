@@ -88,6 +88,7 @@ CREATE TABLE sales.sales (
     -- total numeric(10, 2) NOT NULL,
     -- tambien existe el total sin descuento (si aplicara)
     -- total_without_discount numeric(10, 2) NOT NULL,
+    used_points integer NOT NULL DEFAULT 0,
 
     branch_id integer NOT NULL REFERENCES inventory.branches(id),
     customer_id integer REFERENCES customers.customers(id),

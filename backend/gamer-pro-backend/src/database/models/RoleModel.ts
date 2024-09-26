@@ -9,6 +9,7 @@ export class RoleModel extends Model {
   description: string;
 
   static get relationMappings() {
+    this.knex().raw('select inventory.transfer_stock(?, ?, ?)', [3, 3, 50]);
     return {
       employees: {
         relation: Model.HasManyRelation,

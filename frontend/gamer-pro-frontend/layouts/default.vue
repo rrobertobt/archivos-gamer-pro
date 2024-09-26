@@ -1,5 +1,5 @@
 <template>
-  <v-app theme="dark">
+  <v-app theme="light">
     <NuxtPage />
   </v-app>
 </template>

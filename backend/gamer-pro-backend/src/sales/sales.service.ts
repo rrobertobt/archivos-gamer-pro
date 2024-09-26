@@ -32,12 +32,18 @@ export class SalesService extends BaseService {
     return result;
   }
 
-  findAll() {
-    return `This action returns all sales`;
+  async findAll() {
+    return await this.saleModel.query().withGraphFetched('customer');
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} sale`;
+  async findOne(id: number) {
+    return await this.saleModel
+      .query()
+      .findById(id)
+      .withGraphFetched('sale_details')
+      .withGraphFetched('branch')
+      .withGraphFetched('customer')
+      .withGraphFetched('employee');
   }
 
   remove(id: number) {

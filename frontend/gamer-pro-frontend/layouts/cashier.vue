@@ -1,5 +1,5 @@
 <template>
-  <v-app theme="dark">
+  <v-app theme="light">
     <v-app-bar>
       <v-app-bar-title class="mt-n1">
         <strong>Cajero </strong> - Gamer Pro Xela
@@ -7,20 +7,20 @@
 
       <h4 class="mr-4 d-flex align-center">
         <v-icon size="small" class="mr-1"> mdi-account </v-icon>
-        {{ session.name }}
+        {{ session?.name }}
         <span class="px-2 text-overline">
-          {{ session.id }}
+          {{ session?.id }}
         </span>
       </h4>
       <h4 class="mr-4 d-flex align-center">
         <v-icon size="small" class="mr-1"> mdi-cash-register </v-icon>
         <span class="font-weight-regular">Caja: </span>
-        {{ session.assigned_checkout }}
+        {{ session?.assigned_checkout }}
       </h4>
       <h4 class="mr-4 d-flex align-center">
         <v-icon size="small" class="mr-1"> mdi-store </v-icon>
         <span class="font-weight-regular">Sucursal: </span>
-        {{ session.branch.name }}
+        {{ session?.branch.name }}
       </h4>
       <v-tooltip text="Cerrar sesión" location="bottom">
         <template #activator="{ props }">

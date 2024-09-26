@@ -1,6 +1,7 @@
 import { Model } from 'objection';
 import { EmployeeModel } from './EmployeeModel';
 import { ProductModel } from './ProductModel';
+import { StockModel } from './StockModel';
 
 export class BranchModel extends Model {
   static tableName = 'inventory.branches';
@@ -29,6 +30,14 @@ export class BranchModel extends Model {
             to: 'inventory.stocks.product_id',
           },
           to: 'inventory.products.id',
+        },
+      },
+      stock: {
+        relation: Model.HasManyRelation,
+        modelClass: StockModel,
+        join: {
+          from: 'inventory.branches.id',
+          to: 'inventory.stocks.branch_id',
         },
       },
     };

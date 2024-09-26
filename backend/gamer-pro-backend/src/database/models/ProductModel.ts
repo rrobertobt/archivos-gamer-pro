@@ -1,6 +1,7 @@
 import { Model } from 'objection';
 import { CategoryModel } from './CategoryModel';
 import { BranchModel } from './BranchModel';
+import { StockModel } from './StockModel';
 
 export class ProductModel extends Model {
   static tableName = 'inventory.products';
@@ -11,6 +12,8 @@ export class ProductModel extends Model {
   price: number;
 
   category_id: number;
+
+  branches: BranchModel[];
 
   static get relationMappings() {
     return {
@@ -32,6 +35,14 @@ export class ProductModel extends Model {
             to: 'inventory.stocks.branch_id',
           },
           to: 'inventory.branches.id',
+        },
+      },
+      stock: {
+        relation: Model.HasManyRelation,
+        modelClass: StockModel,
+        join: {
+          from: 'inventory.products.id',
+          to: 'inventory.stocks.product_id',
         },
       },
     };

@@ -43,6 +43,7 @@ export class AuthService extends BaseService {
       .query()
       .findOne({ username })
       .andWhere('role_id', 1);
+    console.log('adminEmployee', adminEmployee);
 
     if (!adminEmployee) {
       const error: IGeneralError = {
@@ -53,7 +54,10 @@ export class AuthService extends BaseService {
       throw new UnauthorizedException(error);
     }
 
-    if (!this.checkPassword(password, adminEmployee.encrypted_password)) {
+    if (
+      !(await this.checkPassword(password, adminEmployee.encrypted_password))
+    ) {
+      console.log('password incorrecto');
       const error: IGeneralError = {
         statusCode: 401,
         error: 'No autorizado',

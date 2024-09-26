@@ -23,7 +23,7 @@ export class SaleModel extends Model {
         modelClass: BranchModel,
         join: {
           from: 'sales.sales.branch_id',
-          to: 'sales.branches.id',
+          to: 'inventory.branches.id',
         },
       },
       customer: {
@@ -31,7 +31,7 @@ export class SaleModel extends Model {
         modelClass: CustomerModel,
         join: {
           from: 'sales.sales.customer_id',
-          to: 'sales.customers.id',
+          to: 'customers.customers.id',
         },
       },
       employee: {
@@ -39,7 +39,7 @@ export class SaleModel extends Model {
         modelClass: EmployeeModel,
         join: {
           from: 'sales.sales.employee_id',
-          to: 'sales.employees.id',
+          to: 'employees.employees.id',
         },
       },
       sale_details: {

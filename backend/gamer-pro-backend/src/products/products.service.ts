@@ -4,6 +4,7 @@ import { Model } from 'objection';
 import { ProductQueryDto } from './products.controller';
 import { BaseService } from 'src/core/base-service';
 import { ProductModel } from 'src/database/models/ProductModel';
+import knex from 'knex';
 
 @Injectable()
 export class ProductsService extends BaseService {

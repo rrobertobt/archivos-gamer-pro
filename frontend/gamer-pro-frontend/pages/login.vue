@@ -1,9 +1,15 @@
 <template>
   <div class="testdata">
-    <v-btn size="small" @click="setTestData('cashier')">Cajero</v-btn>
+    <v-btn size="small" @click="setTestData('cashier1')">Cajero1</v-btn>
+    <v-btn size="small" @click="setTestData('cashier2')">Cajero2</v-btn>
+    <v-btn size="small" @click="setTestData('cashier3')">Cajero3</v-btn>
     <v-btn size="small" @click="setTestData('admin')">Administrador</v-btn>
-    <v-btn size="small" @click="setTestData('warehouse')">Almacén</v-btn>
-    <v-btn size="small" @click="setTestData('inventory')">Inventario</v-btn>
+    <v-btn size="small" @click="setTestData('warehouse1')">Almacén1</v-btn>
+    <v-btn size="small" @click="setTestData('warehouse2')">Almacén2</v-btn>
+    <v-btn size="small" @click="setTestData('warehouse3')">Almacén3</v-btn>
+    <v-btn size="small" @click="setTestData('inventory1')">Inventario1</v-btn>
+    <v-btn size="small" @click="setTestData('inventory2')">Inventario2</v-btn>
+    <v-btn size="small" @click="setTestData('inventory3')">Inventario3</v-btn>
   </div>
   <div class="screen-fill-center">
     <v-row justify="center">
@@ -61,21 +67,45 @@
 
   const setTestData = (role) => {
     switch (role) {
-      case "cashier":
-        username.value = "Guadalupe.CavazosMendez10";
-        password.value = "Guadalupe.CavazosMendez10_password";
-        break;
       case "admin":
         username.value = "superadmin1";
         password.value = "superadmin1_password";
         break;
-      case "warehouse":
+      case "cashier1":
+        username.value = "Guadalupe.CavazosMendez10";
+        password.value = "Guadalupe.CavazosMendez10_password";
+        break;
+      case "cashier2":
+        username.value = "Marta.LlamasZamora";
+        password.value = "Marta.LlamasZamora_password";
+        break;
+      case "cashier3":
+        username.value = "LuisMiguel.PichardoZelaya";
+        password.value = "LuisMiguel.PichardoZelaya_password";
+        break;
+      case "warehouse1":
         username.value = "Dorotea.DuranGuerra45";
         password.value = "Dorotea.DuranGuerra45_password";
         break;
-      case "inventory":
-        username.value = "Isabela_FriasCazares91";
-        password.value = "Isabela_FriasCazares91_password";
+      case "warehouse2":
+        username.value = "Reina_FloresAlonso";
+        password.value = "Reina_FloresAlonso_password";
+        break;
+      case "warehouse3":
+        username.value = "MariadelCarmen.QuezadaBueno";
+        password.value = "MariadelCarmen.QuezadaBueno_password";
+        break;
+      case "inventory1":
+        username.value = "Sancho_VegaLugo62";
+        password.value = "Sancho_VegaLugo62_password";
+        break;
+      case "inventory2":
+        username.value = "Horacio.ArteagaTello";
+        password.value = "Horacio.ArteagaTello_password";
+        break;
+      case "inventory3":
+        username.value = "Gregorio_EspinozaMendoza";
+        password.value = "Gregorio_EspinozaMendoza_password";
         break;
     }
   };

@@ -26,11 +26,13 @@ export class SalesController {
   }
 
   @Get()
+  @Role('cashier')
   findAll() {
     return this.salesService.findAll();
   }
 
   @Get(':id')
+  @Role('cashier')
   findOne(@Param('id') id: string) {
     return this.salesService.findOne(+id);
   }

@@ -1,5 +1,5 @@
 <template>
-  <v-app theme="dark">
+  <v-app theme="light">
     <v-app-bar>
       <v-app-bar-title class="mt-n1">
         <strong>Administrador </strong> - Gamer Pro Xela
