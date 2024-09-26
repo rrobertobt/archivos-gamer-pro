@@ -7,7 +7,7 @@
 
       <h4 class="mr-4 d-flex align-center">
         <v-icon size="small" class="mr-1"> mdi-account </v-icon>
-        {{ session.name }}
+        {{ session?.name }}
       </h4>
       <v-tooltip text="Cerrar sesión" location="bottom">
         <template #activator="{ props }">
@@ -24,5 +24,10 @@
     </v-main>
   </v-app>
 </template>
-<script setup></script>
+<script setup>
+  import { useSessionStore } from "~/store/session";
+
+const { logout } = useSessionStore();
+const { session } = storeToRefs(useSessionStore())
+</script>
 <style lang="postcss" scoped></style>
