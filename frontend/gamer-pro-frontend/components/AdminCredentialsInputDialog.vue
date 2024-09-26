@@ -7,7 +7,7 @@
       title="Verificar credenciales de administrador"
       >      
       <v-card-text>
-        <v-btn icon="mdi-key" size="sm" @click="()=>{adminCredentials.username = 'superadmin1'; adminCredentials.password = 'superadmin1_password'}"/>
+        <!-- <v-btn icon="mdi-key" size="sm" @click="()=>{adminCredentials.username = 'superadmin1'; adminCredentials.password = 'superadmin1_password'}"/> -->
         <p class="text-caption mb-4 text-medium-emphasis">
           Para realizar esta acción, necesitas permisos de administrador. Solicita que un administrador ingrese sus credenciales.
         </p>
