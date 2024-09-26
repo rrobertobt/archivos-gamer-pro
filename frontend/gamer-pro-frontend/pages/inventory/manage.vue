@@ -65,9 +65,15 @@
               controlVariant="stacked"
               label="Cantidad"
               class="mb-n6"
-              :min="1"
+              :min="0"
               variant="outlined"
             ></VNumberInput>
+            <v-text-field
+              v-model="dataToSend.new_store_aisle"
+              label="Pasillo de estantería en tienda"
+              class="mb-n6"
+              variant="outlined"
+            ></v-text-field>
         <v-row>
           <v-col cols="6"
             ><v-btn
@@ -119,6 +125,7 @@ import { SnackbarType, useSnackbarStore } from "~/store/snackbar";
     branch_id: session.branch.id,
     product_id: null,
     stock_to_move: null,
+    new_store_aisle: null,
   });
 
   const handleEditCustomerAction = (item) => {

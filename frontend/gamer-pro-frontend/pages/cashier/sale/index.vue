@@ -21,7 +21,9 @@
         />
       </v-col>
     </v-row>
-    <v-checkbox label="Consumidor Final (C/F)?" v-model="asCf" />
+    <v-checkbox label="Consumidor Final (C/F)?" v-model="asCf" 
+    @change="() => { if(asCf) { currentCustomer = {}; } else { currentCustomer = null; } }"
+    />
     <v-form @submit.prevent="handleCustomerSearch">
       <v-row>
         <v-col cols="3">

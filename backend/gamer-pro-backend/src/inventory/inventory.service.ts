@@ -50,18 +50,18 @@ export class InventoryService extends BaseService {
   }
 
   async update(updateInventoryDto: UpdateInventoryDto) {
-    console.log(updateInventoryDto);
     return await this.dbTrxService.databaseTransaction(async (trx) => {
       const knex = this.productModel.knex();
       await knex
-        .raw('call inventory.transfer_stock(?, ?, ?)', [
+        .raw('call inventory.transfer_stock(?, ?, ?, ?)', [
           updateInventoryDto.branch_id,
           updateInventoryDto.product_id,
           updateInventoryDto.stock_to_move,
+          updateInventoryDto.new_store_aisle,
         ])
         .transacting(trx);
       return this.productModel
-        .query()
+        .query(trx)
         .findById(updateInventoryDto.product_id)
         .withGraphFetched('stock');
     });

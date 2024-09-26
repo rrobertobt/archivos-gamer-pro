@@ -6,6 +6,7 @@ export class ProductQueryDto {
   name: string;
   code: string;
   category_id: number;
+  branch_id: number;
 }
 
 @UseGuards(RoleGuard)

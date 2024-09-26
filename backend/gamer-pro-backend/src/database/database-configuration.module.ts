@@ -11,6 +11,7 @@ import { CustomerModel } from './models/CustomerModel';
 import { ProductModel } from './models/ProductModel';
 import { SaleDetailModel } from './models/SaleDetailModel';
 import { SaleModel } from './models/SaleModel';
+import { StockModel } from './models/StockModel';
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ dotenv.config();
 const models = [
   RoleModel,
   EmployeeModel,
+  StockModel,
   BranchModel,
   CategoryModel,
   CreditPointsCardModel,

@@ -48,7 +48,7 @@ export const useSaleStore = defineStore('sale', () => {
     const by = productSearchType.value ? 'code' : 'name'
     try {
       loadingProducts.value = true
-      const response = await $api(`/products?${by}=${value}`)
+      const response = await $api(`/products?${by}=${value}&branch_id=${useSessionStore().session.branch.id}`)
       products.value = response
       return {
         error: false,
@@ -142,6 +142,7 @@ export const useSaleStore = defineStore('sale', () => {
         typeOf: SnackbarType.SUCCESS,
         messageToShow: 'La venta se ha realizado con éxito'
       })
+      navigateTo('/cashier')
       return {
         error: false,
         response
