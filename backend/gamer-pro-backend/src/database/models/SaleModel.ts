@@ -47,7 +47,7 @@ export class SaleModel extends Model {
         modelClass: SaleDetailModel,
         join: {
           from: 'sales.sales.id',
-          to: 'sales.sale_details.sale_id',
+          to: 'sales.sales_details.sale_id',
         },
       },
     };

@@ -33,14 +33,18 @@ export class SalesService extends BaseService {
   }
 
   async findAll() {
-    return await this.saleModel.query().withGraphFetched('customer');
+    // return await this.saleModel.query().withGraphFetched('customer');
+    return await this.saleModel
+      .knex()
+      .raw(`select * from sales.all_sales`)
+      .then((data) => data.rows);
   }
 
   async findOne(id: number) {
     return await this.saleModel
       .query()
       .findById(id)
-      .withGraphFetched('sale_details')
+      .withGraphFetched('sale_details.product')
       .withGraphFetched('branch')
       .withGraphFetched('customer')
       .withGraphFetched('employee');

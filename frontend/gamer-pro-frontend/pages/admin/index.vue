@@ -34,6 +34,12 @@ const homeItems = [
       to: "/admin/reports",
       color: "gray-lighten-1",
     },
+    {
+      title: "Ver ventas",
+      icon: "mdi-cash",
+      to: "/admin/sales",
+      color: "gray-lighten-2",
+    }
   ];
 
 

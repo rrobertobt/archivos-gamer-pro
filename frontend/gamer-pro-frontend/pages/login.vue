@@ -1,5 +1,6 @@
 <template>
-  <div class="testdata">
+  <v-btn text="mostrar datos de prueba" @click="showTestData = !showTestData" />
+  <div class="testdata" v-if="showTestData">
     <v-btn size="small" @click="setTestData('cashier1')">Cajero1</v-btn>
     <v-btn size="small" @click="setTestData('cashier2')">Cajero2</v-btn>
     <v-btn size="small" @click="setTestData('cashier3')">Cajero3</v-btn>
@@ -64,6 +65,8 @@
   const username = ref("");
   const password = ref("");
   const showPassword = ref(false);
+
+  const showTestData = ref(false);
 
   const setTestData = (role) => {
     switch (role) {
