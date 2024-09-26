@@ -28,8 +28,6 @@ CREATE TABLE inventory.products (
     code character varying(20) NOT NULL UNIQUE,
     description text,
     price numeric(10, 2) NOT NULL,
-    -- stock integer NOT NULL,
-    -- branch_id integer NOT NULL REFERENCES inventory.Branches(id),
     category_id integer NOT NULL REFERENCES inventory.Categories(id)
 );
 
