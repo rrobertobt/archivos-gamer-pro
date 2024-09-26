@@ -177,6 +177,9 @@
     loadingProducts,
   } = storeToRefs(useSaleStore());
 
+  saleProducts.value = []
+  currentCustomer.value = null
+
   const handleGoHome = () => {
     if (
       confirm(

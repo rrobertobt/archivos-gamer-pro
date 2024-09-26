@@ -15,22 +15,22 @@ export class ReportsService {
     let topCustomers = [];
     let topBranches = [];
     await Model.knex()
-      .raw('SELECT * FROM sales.top_sales')
+      .raw('SELECT * FROM sales.topsales')
       .then((data) => {
         topSales = [...data.rows];
       });
     await Model.knex()
-      .raw('SELECT * FROM sales.top_articles')
+      .raw('SELECT * FROM sales.toparticles')
       .then((data) => {
         topArticles = [...data.rows];
       });
     await Model.knex()
-      .raw('SELECT * FROM sales.top_customers')
+      .raw('SELECT * FROM sales.topcustomers')
       .then((data) => {
         topCustomers = [...data.rows];
       });
     await Model.knex()
-      .raw('SELECT * FROM sales.top_branches')
+      .raw('SELECT * FROM sales.topbranches')
       .then((data) => {
         topBranches = [...data.rows];
       });
